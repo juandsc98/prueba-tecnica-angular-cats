@@ -83,6 +83,7 @@ Aplicación web desarrollada en Angular que permite explorar y gestionar informa
 - **APIs**: The Cat API, Backend propio (Node.js/Express) desplegado en Render
 - **Contenedorización**: Docker, Docker Compose, Nginx
 - **Herramientas**: Angular CLI, RxJS, Angular Forms
+- **Testing**: Jasmine, Angular Testing Utilities
 
 ## 📦 Instalación y Uso
 
@@ -108,6 +109,17 @@ docker-compose up -d --build
 # - Ver logs: docker-compose logs -f
 # - Detener: docker-compose down
 # - Reiniciar: docker-compose restart
+
+### Ejecutar Pruebas
+```bash
+# Ejecutar todas las pruebas
+npm test
+
+# Ejecutar pruebas en modo watch
+npm run test:watch
+
+# Ejecutar pruebas con coverage
+npm run test:coverage
 ```
 
 ## 🎯 Funcionalidades Destacadas
