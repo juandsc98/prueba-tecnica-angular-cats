@@ -9,7 +9,7 @@ import { User, AuthResponse, LoginRequest, RegisterRequest, ProfileResponse } fr
   providedIn: 'root'
 })
 export class AuthApiService implements IAuthRepository {
-  private readonly baseUrl = 'http://localhost:3000/api';
+  private readonly baseUrl = 'https://prueba-tecnica-backend-cats.onrender.com/api';
   private readonly tokenKey = 'auth_token';
   private readonly userKey = 'current_user';
   
