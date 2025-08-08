@@ -64,16 +64,8 @@ Aplicación web desarrollada en Angular que permite explorar y gestionar informa
 - **Variables de entorno**: Configuración flexible para diferentes entornos
 - **Puerto expuesto**: Acceso en http://localhost:8080
 
-### Variables de Entorno
-**⚠️ IMPORTANTE**: Las variables de entorno necesarias para el funcionamiento completo de la aplicación se envían por correo electrónico. Estas incluyen:
-
-- **CAT_API_KEY**: Clave de acceso para The Cat API
-- **BACKEND_API_URL**: URL del backend de autenticación (ya configurada)
-- **JWT_SECRET**: Clave secreta para tokens JWT
-- **MONGODB_URI**: Cadena de conexión a MongoDB
-
 ### Configuración Completa
-1. **Recibir variables por correo** y crear archivo `.env`
+
 2. **Backend ya desplegado**: El backend está disponible en https://prueba-tecnica-backend-cats.onrender.com/
 3. **Ejecutar frontend**: Usar Docker Compose para el frontend
 
