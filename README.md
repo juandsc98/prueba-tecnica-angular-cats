@@ -87,8 +87,6 @@ npm run dev
 
 ### Con Docker (Recomendado)
 ```bash
-# 1. Crear archivo .env con las variables recibidas por correo
-# Las variables se envían por correo electrónico
 
 # 2. Ejecutar frontend
 docker-compose up -d --build
