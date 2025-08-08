@@ -1,0 +1,296 @@
+<div class="min-h-screen bg-gray-50 py-8">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Header -->
+    <div class="text-center mb-8">
+      <h1 class="text-4xl font-bold text-gray-900 mb-2">Lista de razas de gatos</h1>
+      <p class="text-lg text-gray-600">Descubre las diferentes razas de gatos y sus características</p>
+    </div>
+
+    <!-- Selector de Raza -->
+    <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+      <label for="breed-select" class="block text-sm font-medium text-gray-700 mb-2">
+        Selecciona una raza de gato: 
+        <span class="text-xs text-gray-500 ml-2">({{ breeds.length }} razas disponibles)</span>
+      </label>
+      @if (isLoadingBreeds) {
+        <div class="animate-pulse">
+          <div class="bg-gray-200 rounded h-10 w-full"></div>
+        </div>
+      } @else {
+        <select
+          id="breed-select"
+          [(ngModel)]="selectedBreedId"
+          (change)="onBreedSelected()"
+          class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+        >
+          <option value="">-- Selecciona una raza --</option>
+          @for (breed of breeds; track breed.id) {
+            <option [value]="breed.id">
+              {{ breed.name }}
+            </option>
+          }
+        </select>
+      }
+    </div>
+
+    <!-- Loading State -->
+    @if (isLoading) {
+      <div class="space-y-8">
+        <!-- Skeleton del Carrusel -->
+        <div class="bg-white rounded-lg shadow-md p-6">
+          <div class="animate-pulse">
+            <div class="bg-gray-200 rounded h-8 w-64 mb-4"></div>
+            <div class="bg-gray-200 rounded h-64 w-full"></div>
+          </div>
+        </div>
+
+        <!-- Skeleton de Información Detallada -->
+        <div class="bg-white rounded-lg shadow-md p-6">
+          <div class="animate-pulse">
+            <div class="bg-gray-200 rounded h-8 w-80 mb-6"></div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <!-- Información Básica -->
+              <div class="space-y-4">
+                <div class="bg-gray-200 rounded h-6 w-40 mb-4"></div>
+                
+                <div class="space-y-3">
+                  <div class="flex justify-between">
+                    <div class="bg-gray-200 rounded h-4 w-20"></div>
+                    <div class="bg-gray-200 rounded h-4 w-32"></div>
+                  </div>
+                  <div class="flex justify-between">
+                    <div class="bg-gray-200 rounded h-4 w-32"></div>
+                    <div class="bg-gray-200 rounded h-4 w-16"></div>
+                  </div>
+                  <div class="flex justify-between">
+                    <div class="bg-gray-200 rounded h-4 w-24"></div>
+                    <div class="bg-gray-200 rounded h-4 w-48"></div>
+                  </div>
+                  <div class="mt-4">
+                    <div class="bg-gray-200 rounded h-4 w-24 mb-2"></div>
+                    <div class="bg-gray-200 rounded h-4 w-full"></div>
+                    <div class="bg-gray-200 rounded h-4 w-3/4"></div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Características -->
+              <div class="space-y-4">
+                <div class="bg-gray-200 rounded h-6 w-32 mb-4"></div>
+                
+                <div class="space-y-3">
+                  <div class="flex justify-between">
+                    <div class="bg-gray-200 rounded h-4 w-24"></div>
+                    <div class="flex space-x-1">
+                      <div class="w-3 h-3 rounded-full bg-gray-200"></div>
+                      <div class="w-3 h-3 rounded-full bg-gray-200"></div>
+                      <div class="w-3 h-3 rounded-full bg-gray-200"></div>
+                      <div class="w-3 h-3 rounded-full bg-gray-200"></div>
+                      <div class="w-3 h-3 rounded-full bg-gray-200"></div>
+                    </div>
+                  </div>
+                  <div class="flex justify-between">
+                    <div class="bg-gray-200 rounded h-4 w-28"></div>
+                    <div class="flex space-x-1">
+                      <div class="w-3 h-3 rounded-full bg-gray-200"></div>
+                      <div class="w-3 h-3 rounded-full bg-gray-200"></div>
+                      <div class="w-3 h-3 rounded-full bg-gray-200"></div>
+                      <div class="w-3 h-3 rounded-full bg-gray-200"></div>
+                      <div class="w-3 h-3 rounded-full bg-gray-200"></div>
+                    </div>
+                  </div>
+                  <div class="flex justify-between">
+                    <div class="bg-gray-200 rounded h-4 w-24"></div>
+                    <div class="flex space-x-1">
+                      <div class="w-3 h-3 rounded-full bg-gray-200"></div>
+                      <div class="w-3 h-3 rounded-full bg-gray-200"></div>
+                      <div class="w-3 h-3 rounded-full bg-gray-200"></div>
+                      <div class="w-3 h-3 rounded-full bg-gray-200"></div>
+                      <div class="w-3 h-3 rounded-full bg-gray-200"></div>
+                    </div>
+                  </div>
+                  <div class="flex justify-between">
+                    <div class="bg-gray-200 rounded h-4 w-20"></div>
+                    <div class="flex space-x-1">
+                      <div class="w-3 h-3 rounded-full bg-gray-200"></div>
+                      <div class="w-3 h-3 rounded-full bg-gray-200"></div>
+                      <div class="w-3 h-3 rounded-full bg-gray-200"></div>
+                      <div class="w-3 h-3 rounded-full bg-gray-200"></div>
+                      <div class="w-3 h-3 rounded-full bg-gray-200"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    }
+
+    <!-- Error State -->
+    @if (errorMessage) {
+      <app-error-message 
+        [message]="errorMessage" 
+        (onRetry)="loadCats()"
+      ></app-error-message>
+    }
+
+    <!-- Contenido del Gato Seleccionado -->
+    @if (selectedCat && !isLoading && !errorMessage) {
+      <div class="space-y-8">
+        <!-- Carrusel de Imágenes -->
+        <div class="bg-white rounded-lg shadow-md p-6">
+          <h2 class="text-2xl font-semibold text-gray-900 mb-4">
+            Imágenes de {{ selectedCat.name }}
+          </h2>
+          <app-cat-carousel
+            [images]="catImages"
+            [currentIndex]="currentImageIndex"
+            (indexChange)="onImageIndexChange($event)"
+          ></app-cat-carousel>
+        </div>
+
+        <!-- Información Detallada -->
+        <div class="bg-white rounded-lg shadow-md p-6">
+          <h2 class="text-2xl font-semibold text-gray-900 mb-6">
+            Información de {{ selectedCat.name }}
+          </h2>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- Información Básica -->
+            <div class="space-y-4">
+              <h3 class="text-lg font-medium text-gray-900 border-b border-gray-200 pb-2">
+                Información Básica
+              </h3>
+              
+              <div class="space-y-3">
+                @if (selectedCat.origin) {
+                  <div class="flex justify-between">
+                    <span class="font-medium text-gray-700">Origen:</span>
+                    <span class="text-gray-900">{{ selectedCat.origin }}</span>
+                  </div>
+                }
+                
+                @if (selectedCat.life_span) {
+                  <div class="flex justify-between">
+                    <span class="font-medium text-gray-700">Esperanza de vida:</span>
+                    <span class="text-gray-900">{{ selectedCat.life_span }} años</span>
+                  </div>
+                }
+                
+                @if (selectedCat.temperament) {
+                  <div class="flex justify-between">
+                    <span class="font-medium text-gray-700">Temperamento:</span>
+                    <span class="text-gray-900">{{ selectedCat.temperament }}</span>
+                  </div>
+                }
+                
+                @if (selectedCat.description) {
+                  <div class="mt-4">
+                    <span class="font-medium text-gray-700 block mb-2">Descripción:</span>
+                    <p class="text-gray-900 text-sm leading-relaxed">{{ selectedCat.description }}</p>
+                  </div>
+                }
+              </div>
+            </div>
+
+            <!-- Características -->
+            <div class="space-y-4">
+              <h3 class="text-lg font-medium text-gray-900 border-b border-gray-200 pb-2">
+                Características
+              </h3>
+              
+              <div class="space-y-3">
+                @if (selectedCat.adaptability !== undefined) {
+                  <div class="flex justify-between">
+                    <span class="font-medium text-gray-700">Adaptabilidad:</span>
+                    <div class="flex items-center">
+                      <div class="flex space-x-1">
+                        @for (i of [1,2,3,4,5]; track i) {
+                          <div 
+                            class="w-3 h-3 rounded-full"
+                            [class]="i <= selectedCat.adaptability ? 'bg-blue-500' : 'bg-gray-300'">
+                          </div>
+                        }
+                      </div>
+                      <span class="ml-2 text-sm text-gray-600">{{ selectedCat.adaptability }}/5</span>
+                    </div>
+                  </div>
+                }
+                
+                @if (selectedCat.affection_level !== undefined) {
+                  <div class="flex justify-between">
+                    <span class="font-medium text-gray-700">Nivel de afecto:</span>
+                    <div class="flex items-center">
+                      <div class="flex space-x-1">
+                        @for (i of [1,2,3,4,5]; track i) {
+                          <div 
+                            class="w-3 h-3 rounded-full"
+                            [class]="i <= selectedCat.affection_level ? 'bg-pink-500' : 'bg-gray-300'">
+                          </div>
+                        }
+                      </div>
+                      <span class="ml-2 text-sm text-gray-600">{{ selectedCat.affection_level }}/5</span>
+                    </div>
+                  </div>
+                }
+                
+                @if (selectedCat.energy_level !== undefined) {
+                  <div class="flex justify-between">
+                    <span class="font-medium text-gray-700">Nivel de energía:</span>
+                    <div class="flex items-center">
+                      <div class="flex space-x-1">
+                        @for (i of [1,2,3,4,5]; track i) {
+                          <div 
+                            class="w-3 h-3 rounded-full"
+                            [class]="i <= selectedCat.energy_level ? 'bg-yellow-500' : 'bg-gray-300'">
+                          </div>
+                        }
+                      </div>
+                      <span class="ml-2 text-sm text-gray-600">{{ selectedCat.energy_level }}/5</span>
+                    </div>
+                  </div>
+                }
+                
+                @if (selectedCat.intelligence !== undefined) {
+                  <div class="flex justify-between">
+                    <span class="font-medium text-gray-700">Inteligencia:</span>
+                    <div class="flex items-center">
+                      <div class="flex space-x-1">
+                        @for (i of [1,2,3,4,5]; track i) {
+                          <div 
+                            class="w-3 h-3 rounded-full"
+                            [class]="i <= selectedCat.intelligence ? 'bg-green-500' : 'bg-gray-300'">
+                          </div>
+                        }
+                      </div>
+                      <span class="ml-2 text-sm text-gray-600">{{ selectedCat.intelligence }}/5</span>
+                    </div>
+                  </div>
+                }
+              </div>
+            </div>
+          </div>
+
+          <!-- Enlaces -->
+          @if (selectedCat.wikipedia_url) {
+            <div class="mt-6 pt-6 border-t border-gray-200">
+              <a 
+                [href]="selectedCat.wikipedia_url" 
+                target="_blank"
+                class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+              >
+                <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z"></path>
+                  <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"></path>
+                </svg>
+                Ver en Wikipedia
+              </a>
+            </div>
+          }
+        </div>
+      </div>
+    }
+  </div>
+</div>

@@ -1,0 +1,63 @@
+/* Estilos para las animaciones de routing */
+.router-container {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* Línea de progreso debajo del navbar */
+.progress-line {
+  position: fixed;
+  top: 64px; /* Altura del navbar */
+  left: 0;
+  width: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #a6c7fd, #97b3ff);
+  z-index: 1000;
+  opacity: 0;
+}
+
+.progress-line.animate {
+  animation: progressLineAnimation 0.6s ease-out forwards;
+}
+
+@keyframes progressLineAnimation {
+  0% {
+    width: 0;
+    opacity: 1;
+    transform: translateX(0);
+  }
+  50% {
+    width: 100%;
+    opacity: 1;
+    transform: translateX(0);
+  }
+  100% {
+    width: 100%;
+    opacity: 0;
+    transform: translateX(100%);
+  }
+}
+
+/* Estilos para el menú móvil */
+#mobile-menu {
+  transition: all 0.3s ease-in-out;
+}
+
+#mobile-menu.hidden {
+  display: none;
+}
+
+/* Mejoras para las animaciones */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+/* Optimización para animaciones */
+.animate-on-router {
+  will-change: transform, opacity;
+}

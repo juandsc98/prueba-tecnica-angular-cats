@@ -1,0 +1,166 @@
+<div class="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+  <div class="sm:mx-auto sm:w-full sm:max-w-md">
+    <div class="text-center">
+      <h2 class="text-3xl font-bold text-gray-900">Crear cuenta</h2>
+      <p class="mt-2 text-sm text-gray-600">
+        ¿Ya tienes una cuenta?
+        <a routerLink="/login" class="font-medium text-blue-600 hover:text-blue-500">
+          Inicia sesión aquí
+        </a>
+      </p>
+    </div>
+  </div>
+
+  <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+    <div class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="space-y-6">
+        <div>
+          <label for="nombre" class="block text-sm font-medium text-gray-700">
+            Nombre completo
+          </label>
+          <div class="mt-1">
+            <input
+              id="nombre"
+              name="nombre"
+              type="text"
+              formControlName="nombre"
+              required
+              class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+              [class.border-red-500]="registerForm.get('nombre')?.invalid && registerForm.get('nombre')?.touched"
+            />
+          </div>
+          @if (registerForm.get('nombre')?.invalid && registerForm.get('nombre')?.touched) {
+            <p class="mt-1 text-sm text-red-600">
+              El nombre debe tener al menos 6 caracteres
+            </p>
+          }
+        </div>
+
+        <div>
+          <label for="email" class="block text-sm font-medium text-gray-700">
+            Correo electrónico
+          </label>
+          <div class="mt-1">
+            <input
+              id="email"
+              name="email"
+              type="email"
+              formControlName="email"
+              required
+              class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+              [class.border-red-500]="registerForm.get('email')?.invalid && registerForm.get('email')?.touched"
+            />
+          </div>
+          @if (registerForm.get('email')?.invalid && registerForm.get('email')?.touched) {
+            <p class="mt-1 text-sm text-red-600">
+              Ingresa un correo electrónico válido
+            </p>
+          }
+        </div>
+
+        <div>
+          <label for="password" class="block text-sm font-medium text-gray-700">
+            Contraseña
+          </label>
+          <div class="mt-1">
+            <input
+              id="password"
+              name="password"
+              type="password"
+              formControlName="password"
+              required
+              class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+              [class.border-red-500]="registerForm.get('password')?.invalid && registerForm.get('password')?.touched"
+            />
+          </div>
+          @if (registerForm.get('password')?.invalid && registerForm.get('password')?.touched) {
+            <p class="mt-1 text-sm text-red-600">
+              La contraseña debe tener al menos 6 caracteres
+            </p>
+          }
+        </div>
+
+        <div>
+          <label for="telefono" class="block text-sm font-medium text-gray-700">
+            Teléfono
+          </label>
+          <div class="mt-1">
+            <input
+              id="telefono"
+              name="telefono"
+              type="tel"
+              formControlName="telefono"
+              required
+              class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+              [class.border-red-500]="registerForm.get('telefono')?.invalid && registerForm.get('telefono')?.touched"
+            />
+          </div>
+          @if (registerForm.get('telefono')?.invalid && registerForm.get('telefono')?.touched) {
+            <p class="mt-1 text-sm text-red-600">
+              El teléfono debe tener al menos 8 dígitos
+            </p>
+          }
+        </div>
+
+        <div>
+          <label for="edad" class="block text-sm font-medium text-gray-700">
+            Edad
+          </label>
+          <div class="mt-1">
+            <input
+              id="edad"
+              name="edad"
+              type="number"
+              formControlName="edad"
+              required
+              min="1"
+              max="120"
+              class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+              [class.border-red-500]="registerForm.get('edad')?.invalid && registerForm.get('edad')?.touched"
+            />
+          </div>
+          @if (registerForm.get('edad')?.invalid && registerForm.get('edad')?.touched) {
+            <p class="mt-1 text-sm text-red-600">
+              La edad debe estar entre 1 y 120 años
+            </p>
+          }
+        </div>
+
+        @if (showSuccessMessage) {
+          <app-success-message 
+            title="¡Registro Exitoso!"
+            message="Tu cuenta ha sido creada correctamente. Serás redirigido a tu perfil en unos segundos."
+            [showActionButton]="true"
+            actionButtonText="Ir al Perfil Ahora"
+            (onAction)="goToProfile()"
+          ></app-success-message>
+        }
+
+        @if (errorMessage) {
+          <app-error-message 
+            [message]="errorMessage" 
+            (onRetry)="onSubmit()"
+          ></app-error-message>
+        }
+
+        <div>
+          <button
+            type="submit"
+            [disabled]="registerForm.invalid || isLoading"
+            class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            @if (isLoading) {
+              <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+              </svg>
+              Registrando...
+            } @else {
+              Crear cuenta
+            }
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
