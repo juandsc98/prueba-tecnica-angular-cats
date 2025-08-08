@@ -98,11 +98,16 @@ npm run dev
 # Las variables se envían por correo electrónico
 
 # 2. Ejecutar frontend
-docker-compose up --build
+docker-compose up -d --build
 
 # 3. Acceder a la aplicación
 # Frontend: http://localhost:8080
 # Backend: https://prueba-tecnica-backend-cats.onrender.com/
+
+# Comandos útiles:
+# - Ver logs: docker-compose logs -f
+# - Detener: docker-compose down
+# - Reiniciar: docker-compose restart
 ```
 
 ## 🎯 Funcionalidades Destacadas
@@ -113,11 +118,3 @@ docker-compose up --build
 - **Tabla responsive**: Visualización de datos con paginación
 - **Diseño adaptativo**: Funciona perfectamente en todos los dispositivos
 - **Contenedorización**: Despliegue simplificado con Docker
-
-## 📧 Soporte
-
-Para obtener las variables de entorno necesarias o soporte técnico, contactar por correo electrónico.
-
----
-
-**Desarrollado con ❤️ usando Angular y The Cat API**

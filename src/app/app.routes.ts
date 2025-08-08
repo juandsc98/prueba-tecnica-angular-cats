@@ -6,10 +6,14 @@ import { RegisterComponent } from './features/auth/register/register.component';
 import { ProfileComponent } from './features/auth/profile/profile.component';
 import { AuthGuard } from './core/guards/auth.guard';
 import { NoAuthGuard } from './core/guards/no-auth.guard';
-import { AppInitializerComponent } from './core/components/app-initializer.component';
-
 export const routes: Routes = [
-  { path: '', component: AppInitializerComponent },
+  { 
+    path: '', 
+    canActivate: [NoAuthGuard],
+    children: [
+      { path: '', redirectTo: '/login', pathMatch: 'full' }
+    ]
+  },
   
   // Auth routes (solo para usuarios NO autenticados)
   { 
